@@ -58,8 +58,8 @@ const onpagination=(start,end)=>{
 <Online>
 <div className={` ${mode===true?"bg-dark":null}`}>
    <nav class="navbar navbar-light bg-warning">
-  <div>
-   <h4 className="btn btn-light" onClick={logout}>logout</h4>
+   <div>
+   <h4 className="bg-light p-1 px-2 pb-2  rounded-1" onClick={logout}><i class="fa fa-sign-out" aria-hidden="true"></i><small>log-out</small></h4>
     
     
   </div>
