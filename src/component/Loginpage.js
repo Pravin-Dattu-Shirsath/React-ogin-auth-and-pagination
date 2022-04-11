@@ -16,13 +16,20 @@ const alluser = () => {
   }
 }
 
-
+const admin = () => {
+  const admin1 = localStorage.getItem("admin1");
+  if(admin1){
+      return JSON.parse(admin1)
+  }else {
+      return [];
+  }
+}
 function Loginpage() {
 
   
 
   const navigate = useNavigate()
-
+const [admin1,setAdmin1]=useState(admin())
 const [user,setUser]=useState( alluser)
 const [email,setEmail]= useState("")
 const [password,setPassword]= useState("")
@@ -41,8 +48,13 @@ const formSchema = Yup.object().shape({
  const { errors } = formState
  //END FORM VALIDATION
 
- useEffect (() => {
 
+ useEffect (() => {
+if(admin1.login===true){
+  navigate("/admin")
+}else{
+  navigate("/")
+}
 },[])
 
 const filtered_arr = [];
@@ -57,6 +69,7 @@ const Submit = () => {
      if (password === ele.password){
          navigate("/admin")
         
+         localStorage.setItem("admin1",JSON.stringify({login:true}))
      }else {
       
      }
@@ -90,7 +103,7 @@ const passHide=()=>{
             type="text"
             {...register('email')}
             className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-            onChange={(e)=>{setEmail(e.target.value)}}
+            onChange={(e)=>{setEmail(e.target.value)} }
           />
            <div className="invalid-feedback">{errors.email?.message}</div></div>
            <div className="col-1"></div>
