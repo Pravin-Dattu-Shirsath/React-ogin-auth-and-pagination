@@ -9,13 +9,15 @@ function Home() {
   const navigate = useNavigate()
  
   const [posts,setPosts]=useState([]);
- 
- 
+  
+
   useEffect(() => {
    
     getAllpost();
+   
  
   },[])
+
   async function getAllpost(){
       try {
       const allpost = await axios.get("https://jsonplaceholder.typicode.com/posts")
@@ -27,12 +29,9 @@ function Home() {
   }
 }
 
-
-
-  // array on data
-  
  const[veiw,setVeiw]=useState("List")
   const [mode,setMode]=useState(false)
+
  const [perPageShow,setPerPageShow]=useState(10)
 const [pagination,setPagination]=useState({
   start:0,
@@ -51,7 +50,7 @@ const onpagination=(start,end)=>{
     }
   }
   const logout =()=>{
-    localStorage.setItem("admin",JSON.stringify([{login:false}])) 
+    localStorage.setItem("admin1",JSON.stringify({login:false})) 
     navigate("/") 
   }
   return (<>
@@ -100,11 +99,10 @@ const onpagination=(start,end)=>{
      })
             }
           </div>
-         {
+       {
          posts.length!==0? <Pagination perPageShow={perPageShow} onpagination={onpagination} total={posts.length} />
        :""
-       }
-        </div>
+       }   </div>
 
         
      
